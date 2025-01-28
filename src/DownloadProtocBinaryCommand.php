@@ -128,7 +128,7 @@ final class DownloadProtocBinaryCommand extends Command
             $extractor->next();
 
             if (!$file->isExecutable()) {
-                @chmod($file->getRealPath(), 0755);
+                @\chmod($file->getRealPath(), 0755);
             }
         }
 
@@ -213,7 +213,7 @@ final class DownloadProtocBinaryCommand extends Command
         $progress->display();
 
         try {
-            return $factory->fromAsset($asset, function (int $size, int $total) use ($progress) {
+            return $factory->fromAsset($asset, static function (int $size, int $total) use ($progress): void {
                 if ($progress->getMaxSteps() !== $total) {
                     $progress->setMaxSteps($total);
                 }

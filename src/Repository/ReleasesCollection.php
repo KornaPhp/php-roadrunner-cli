@@ -101,7 +101,7 @@ final class ReleasesCollection extends Collection
     {
         $weight = Stability::toInt($stability);
 
-        return $this->filter(function (ReleaseInterface $release) use ($weight): bool {
+        return $this->filter(static function (ReleaseInterface $release) use ($weight): bool {
             return Stability::toInt($release->getStability()) >= $weight;
         });
     }
